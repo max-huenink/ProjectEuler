@@ -13,34 +13,39 @@ namespace ProjectEuler
             #region Problem1
             problems[0] = () =>
             {
-                int[] nums = new int[997];
+                int sum = 0;
                 for (int i = 3; i < 1000; i++)
                 {
-                    nums[i - 3] = i;
+                    if (i % 3 == 0 || i % 5 == 0)
+                        sum += i;
                 }
-                return nums.Where(n => n % 3 == 0 || n % 5 == 0).Sum();
+                return sum;
             };
             #endregion
 
             #region Problem 2
             problems[1] = () =>
             {
-                Queue<int> fib = new Queue<int>(new int[] { 1, 2 });
+                int a = 1;
+                int b = 2;
                 int sum = 2;
-                int first = fib.Dequeue();
-                while (first < 4000000)
+                while (a < 4000000)
                 {
-                    int nextNum = first + fib.Peek();
-                    if (nextNum % 2 == 0)
-                        sum += nextNum;
-                    fib.Enqueue(nextNum);
-                    first = fib.Dequeue();
+                    int next = a + b;
+                    if (next % 2 == 0)
+                        sum += next;
+                    a = b;
+                    b = next;
                 }
                 return sum;
             };
             #endregion
 
             #region Problem 3
+            // Prime factorization of 13195 is 5, 7, 13, 29
+            // Prime factorization of 600851475143
+            // Find largest prime factor
+            // Divide by lowest prime, if remainder is zero divide result by next prime, repeat remainder step.
             problems[2] = () => -1;
             #endregion
         }
